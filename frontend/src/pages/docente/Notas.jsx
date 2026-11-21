@@ -16,6 +16,8 @@ const CAMPOS = [
 
 const vacio = (v) => v === '' || v === null || v === undefined || Number.isNaN(Number(v));
 function completo(a) { return CAMPOS.every((c) => !vacio(a[c.clave])); }
+// Normaliza lo que llega de la BD (NUMERIC '18.00' -> '18') para que quepa en la casilla.
+const num = (v) => (v === null || v === undefined || v === '' ? '' : String(Number(v)));
 function firma(a) { return CAMPOS.map((c) => a[c.clave]).join('|'); }
 // Misma fórmula que el servidor (un decimal); el servidor es quien manda al guardar.
 function calcular(a, p) {
@@ -56,8 +58,8 @@ export default function Notas() {
         setAlumnos(res.data.alumnos.map((a) => {
           const f = {
             ...a,
-            promTareas: a.prom_tareas ?? '', promPracticas: a.prom_practicas ?? '',
-            examen1: a.examen1 ?? '', examen2: a.examen2 ?? '',
+            promTareas: num(a.prom_tareas), promPracticas: num(a.prom_practicas),
+            examen1: num(a.examen1), examen2: num(a.examen2),
           };
           return { ...f, notaGuardada: a.nota ?? null, original: a.prom_tareas === null || a.prom_tareas === undefined ? '' : firma(f) };
         }));
@@ -170,7 +172,6 @@ export default function Notas() {
                   <tr className="bg-marino-50/60 text-left text-marino-600 text-[11px] font-bold uppercase tracking-wider">
                     <th className="px-5 py-3 w-14">N°</th>
                     <th className="px-3 py-3">Estudiante</th>
-                    <th className="px-3 py-3">DNI</th>
                     {CAMPOS.map((c) => (
                       <th key={c.clave} className="px-2 py-3 text-center bg-marino-50">
                         {c.etiqueta}
@@ -203,7 +204,7 @@ export default function Notas() {
                           <td key={c.clave} className="px-2 py-3 text-center">
                             <input type="number" min="0" max="20" step="0.1" value={a[c.clave]} onChange={(e) => cambiarCampo(a.alumno_id, c.clave, e.target.value)}
                               aria-label={`${c.etiqueta} de ${a.nombres} ${a.apellidos}`}
-                              className="w-16 rounded-lg border border-marino-100 bg-marino-50/60 px-2 py-1.5 text-center font-semibold text-marino-900 outline-none transition-shadow focus:border-marino-400 focus:ring-2 focus:ring-marino-100" />
+                              className="w-20 rounded-lg border border-marino-100 bg-marino-50/60 px-2 py-1.5 text-center font-semibold text-marino-900 outline-none transition-shadow focus:border-marino-400 focus:ring-2 focus:ring-marino-100" />
                           </td>
                         ))}
                         <td className="px-3 py-3 text-center bg-marino-50/40">
