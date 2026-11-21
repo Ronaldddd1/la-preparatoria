@@ -1,0 +1,18 @@
+{
+  "name": "La Preparatoria · Sistema de Gestión Académica",
+  "short_name": "La Preparatoria",
+  "description": "Matrículas, horarios, notas, asistencia y avisos de La Preparatoria.",
+  "start_url": "/login",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#FAF7F2",
+  "theme_color": "#1B2A4A",
+  "orientation": "portrait-primary",
+  "lang": "es-PE",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

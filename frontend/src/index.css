@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { scroll-behavior: smooth; }
+
+body {
+  @apply bg-papel text-marino-800 font-sans antialiased;
+}
+
+h1, h2, h3, .font-display {
+  font-family: 'Newsreader', Georgia, serif;
+  letter-spacing: -0.015em;
+}
+
+::selection { @apply bg-rojo-200 text-marino-900; }
+
+*:focus-visible {
+  outline: 2px solid #E4202A;
+  outline-offset: 2px;
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #d7deec; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #b0bfd9; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* Modo de alto contraste (activado desde el widget de accesibilidad) */
+.alto-contraste,
+.alto-contraste * {
+  background-color: #000 !important;
+  background-image: none !important;
+  color: #fff !important;
+  border-color: #ffe600 !important;
+}
+
+.alto-contraste a,
+.alto-contraste button {
+  text-decoration: underline;
+}
+
+.alto-contraste *:focus-visible {
+  outline: 3px solid #ffe600 !important;
+  outline-offset: 2px;
+}
+
+/* Modo oscuro (activado desde el widget de accesibilidad). Es una
+   sobrecapa global de colores, no un rediseño componente por componente,
+   pensada para ser suficientemente cómoda sin reescribir cada página. */
+.modo-oscuro { color-scheme: dark; }
+
+.modo-oscuro body,
+.modo-oscuro [class*="bg-papel"] {
+  background-color: #0f172a !important;
+}
+
+.modo-oscuro [class*="bg-white"] {
+  background-color: #1e293b !important;
+}
+
+.modo-oscuro [class*="bg-marino-50"] {
+  background-color: #253247 !important;
+}
+
+.modo-oscuro [class*="text-marino-800"],
+.modo-oscuro [class*="text-marino-700"] {
+  color: #e2e8f0 !important;
+}
+
+.modo-oscuro [class*="text-marino-600"],
+.modo-oscuro [class*="text-marino-500"] {
+  color: #cbd5e1 !important;
+}
+
+.modo-oscuro [class*="text-marino-400"],
+.modo-oscuro [class*="text-marino-300"] {
+  color: #94a3b8 !important;
+}
+
+.modo-oscuro [class*="border-marino-50"],
+.modo-oscuro [class*="border-marino-100"],
+.modo-oscuro [class*="border-marino-200"] {
+  border-color: #334155 !important;
+}
+
+.modo-oscuro input,
+.modo-oscuro select,
+.modo-oscuro textarea {
+  background-color: #1e293b !important;
+  color: #e2e8f0 !important;
+}
+
+.modo-oscuro ::-webkit-scrollbar-thumb { background: #334155; }
+.modo-oscuro ::-webkit-scrollbar-thumb:hover { background: #475569; }
